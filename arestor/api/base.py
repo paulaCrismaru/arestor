@@ -37,11 +37,12 @@ class MethodDispatcher(cherrypy.dispatch.MethodDispatcher):
         """Return the appropriate page handler, plus any virtual path."""
         vpath = []
         for entity in path.split("/"):
-            if not entity.startswith("instance-"):
-                vpath.append(entity)
-            else:
+            vpath.append(entity)
+            if (entity.startswith("instance-") and len(vpath) > 3 and
+                    vpath[3] == entity):
                 request = cherrypy.serving.request
                 request.headers.update({"X-Arestor-Instance-ID": entity})
+                vpath.pop(3)
 
         return super(MethodDispatcher, self).find_handler("/".join(vpath))
 
