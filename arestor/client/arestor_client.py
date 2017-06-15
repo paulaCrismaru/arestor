@@ -20,6 +20,7 @@ from arestor.client import resource as base_client
 from arestor.common import constant
 
 
+
 def _url_join(base, *args):
     """Join the url fragments."""
     if not base.endswith("/"):
@@ -65,7 +66,9 @@ class ArestorClient(base_client.ResourceClient):
 
     def get_url(self):
         """Return the url for this client."""
-        url = _url_join(self._base_url, 'v1', self._client_id, self._namespace)
+        url = _url_join(self._base_url, 'v1', self._namespace, self._client_id)
+        if not url.endswith('/'):
+            url += '/'
         return url
 
     def set_namespace(self, namespace):

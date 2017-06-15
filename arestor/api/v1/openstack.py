@@ -139,12 +139,21 @@ class _LegacyVersion(base_api.BaseAPI):
 
 class OpenStackEndpoint(base_api.BaseAPI):
 
-    """Arestor API endpoint for OpenStack Mocked Metadata."""
+    """Container for the openstack resources."""
 
     resources = [
         ("2013-04-04", _LegacyVersion),
         ("latest", _LatestVersion),
         ("content", _Content),
+    ]
+
+
+class BaseOpenstackEndpoint(base_api.BaseAPI):
+
+    """Arestor API endpoint for OpenStack Mocked Metadata."""
+
+    resources = [
+        ("openstack", OpenStackEndpoint)
     ]
     """A list that contains all the resources (endpoints) available for the
     current metadata service."""
@@ -163,3 +172,4 @@ class OpenStackEndpoint(base_api.BaseAPI):
 
         raise AttributeError("%r object has no attribute %r" %
                              (self.__class__.__name__, name))
+
