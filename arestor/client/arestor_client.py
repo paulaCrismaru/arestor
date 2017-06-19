@@ -135,6 +135,9 @@ class ArestorClient(base_client.ResourceClient):
     def set_user_data(self, userdata):
         self._create_resource("user_data", userdata)
 
+    def set_vendor_data(self, vendordata):
+        self._create_resource("vendor_data", vendordata)
+
     def get_password(self):
         return self._get_resource("password")
 
