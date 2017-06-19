@@ -17,6 +17,7 @@
 
 from arestor.api import base as base_api
 from arestor.api.v1 import openstack
+from arestor.api.v1 import digitalocean
 
 
 class ArestorV1(base_api.BaseAPI):
@@ -25,6 +26,7 @@ class ArestorV1(base_api.BaseAPI):
 
     resources = [
         ("openstack", openstack.OpenStackEndpointNamespace),
+        ("digitalocean", digitalocean.DigitalOceanEndpoint),
     ]
     """A list that contains all the resources (endpoints) available for the
     current metadata service."""
